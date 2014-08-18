@@ -7,9 +7,6 @@ Discarded input sections
  .bss           0x00000000        0x0 build/main.o
  .ARM.attributes
                 0x00000000       0x14 build/main.o
- .bss           0x00000000        0x0 build/subrutinas.o
- .ARM.attributes
-                0x00000000       0x14 build/subrutinas.o
  .bss           0x00000000        0x0 build/systemTimer.o
  .ARM.attributes
                 0x00000000       0x14 build/systemTimer.o
@@ -23,34 +20,30 @@ Linker script and memory map
 
 LOAD build/gpio.o
 LOAD build/main.o
-LOAD build/subrutinas.o
 LOAD build/systemTimer.o
 
-.init           0x00008000        0x4
+.init           0x00008000       0x78
  *(.init)
- .init          0x00008000        0x4 build/main.o
+ .init          0x00008000       0x78 build/main.o
                 0x00008000                _start
 
-.text           0x00008004      0x144
+.text           0x00008078       0xd8
  *(.text)
- .text          0x00008004       0x98 build/gpio.o
-                0x00008004                GetGpioAddress
-                0x0000800c                SetGpioFunction
-                0x0000805c                SetGpio
- .text          0x0000809c       0x3c build/main.o
- .text          0x000080d8       0x30 build/subrutinas.o
-                0x000080d8                Boton
- .text          0x00008108       0x40 build/systemTimer.o
-                0x00008108                GetSystemTimerBase
-                0x00008110                GetTimeStamp
-                0x00008120                Wait
+ .text          0x00008078       0x98 build/gpio.o
+                0x00008078                GetGpioAddress
+                0x00008080                SetGpioFunction
+                0x000080d0                SetGpio
+ .text          0x00008110        0x0 build/main.o
+ .text          0x00008110       0x40 build/systemTimer.o
+                0x00008110                GetSystemTimerBase
+                0x00008118                GetTimeStamp
+                0x00008128                Wait
 
-.data           0x00008148        0x0
+.data           0x00008150        0x0
  *(.data)
- .data          0x00008148        0x0 build/gpio.o
- .data          0x00008148        0x0 build/main.o
- .data          0x00008148        0x0 build/subrutinas.o
- .data          0x00008148        0x0 build/systemTimer.o
+ .data          0x00008150        0x0 build/gpio.o
+ .data          0x00008150        0x0 build/main.o
+ .data          0x00008150        0x0 build/systemTimer.o
 
 /DISCARD/
  *(*)
