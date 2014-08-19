@@ -1,6 +1,6 @@
 .globl Boton
 	
-	Boton:	
+Boton:	
 	push {lr}
 	push {r0}
 
@@ -13,7 +13,12 @@
 	teq r6,#0
 	movne r0,#8
 	movne r1,#1
-	blne SetGpio	
+	blne SetGpio
+
+	teq r6,#0
+	moveq r0,#8
+	moveq r1,#0
+	bleq SetGpio
 
 
 	pop {pc}
